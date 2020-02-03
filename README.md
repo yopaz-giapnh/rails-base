@@ -5,12 +5,18 @@ application up and running.
 
 Things you may want to cover:
 
+## Docker
+```
+docker-compose build
+docker-compose up -d
+```
+
 ## Ruby version
-2.6.3
+```
+Ruby version 2.6.3
+```
 
 ## System dependencies
-
-## Configuration
 
 ## Database creation
 
