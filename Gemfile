@@ -27,6 +27,9 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'mysql2'
 
+# Seed migration
+gem 'seed-fu'
+
 # View decorator
 gem 'draper'
 

@@ -16,14 +16,4 @@ docker-compose up -d
 Ruby version 2.6.3
 ```
 
-## System dependencies
-
-## Database creation
-
-## Database initialization
-
-## How to run the test suite
-
-## Services (job queues, cache servers, search engines, etc.)
-
-## Deployment instructions
+## Database migration and data seeding

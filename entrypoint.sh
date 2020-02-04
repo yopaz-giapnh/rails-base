@@ -6,6 +6,7 @@ rm -f /app/tmp/pids/server.pid
 
 bundle exec rake db:create
 bundle exec rake db:migrate
+bundle exec rake db:seed
 
 if [[ $? != 0 ]]; then
   echo
