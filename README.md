@@ -17,3 +17,7 @@ Ruby version 2.6.3
 ```
 
 ## Database migration and data seeding
+```
+rails db:migrate
+rails db:seed
+```
