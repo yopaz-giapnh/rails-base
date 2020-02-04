@@ -33,6 +33,9 @@ gem 'seed-fu'
 # View decorator
 gem 'draper'
 
+# Image upload https://github.com/shrinerb/shrine
+gem "shrine"
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
@@ -40,9 +43,17 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
 # gem 'devise-jwt'
 
+# Dashboard
+gem 'activeadmin'
+
+# Pagination
+gem 'kaminari'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem "capistrano", "~> 3.10", require: false
+  gem "capistrano-rails", "~> 1.4", require: false
 end
 
 group :development do
