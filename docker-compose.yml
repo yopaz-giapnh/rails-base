@@ -1,21 +1,28 @@
 version: '3'
 services:
-  db:
-    image: mariadb
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_USERNAME: root
-      MYSQL_PASSWORD: root
-    ports: 
-      - "3306:3306"
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
     volumes:
-      - ./tmp/db_data:/var/lib/mysql/data
-  web:
+      - postgres:/var/lib/postgresql/data
+  app:
     build: .
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: docker/bin/start-rails
     volumes:
       - .:/myapp
     ports:
       - "3000:3000"
     depends_on:
-      - db
+      - postgres
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - 8025:8025
+    environment:
+      MH_STORAGE: maildir
+      MH_MAILDIR_PATH: /tmp
+
+volumes:
+  postgres:
+  maildir:

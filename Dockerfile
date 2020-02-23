@@ -1,24 +1,32 @@
-FROM ruby:2.6.3
+FROM ruby:2.5.0
+
+ENV LANG C.UTF-8
 
 RUN apt-get update && apt-get install -y \
   build-essential \
   nodejs \
-  yarn
+  graphviz \
+  vim
 
-RUN mkdir -p /app
-WORKDIR /app
+# Node.js
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
+  apt-get install -y nodejs
 
-COPY Gemfile Gemfile.lock ./
-RUN gem install bundler && bundle install --jobs 20 --retry 5
+# Yarn
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+  echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+  apt-get update && \
+  apt-get install -y yarn
 
-# Copy the main application.
-COPY . ./
+ENV EDITOR /usr/bin/vim
 
-COPY entrypoint.sh /usr/bin/
-RUN chmod +x /usr/bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]
+WORKDIR /myapp
 
-EXPOSE 3000
+# Rubygems
+RUN gem update --system
+COPY Gemfile Gemfile.lock /myapp/
+RUN bundle install -j 4
 
-# Start the main process.
-CMD ["rails", "server", "-b", "0.0.0.0"]
+# Run server
+COPY . /myapp/
+CMD ["docker/bin/start-rails"]

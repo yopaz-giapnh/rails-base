@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem "dotenv-rails", groups: [:development, :test]
 
-ruby "2.6.3"
+ruby "2.5.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 6.0.2", ">= 6.0.2.1"
@@ -24,7 +24,8 @@ gem "rubocop", require: false
 gem "rubocop-rails", require: false
 gem "rubocop-performance", require: false
 
-gem "mysql2"
+gem 'pg', '~> 0.18.4'
+# gem "mysql2"
 
 # Seed migration
 gem "seed-fu"
