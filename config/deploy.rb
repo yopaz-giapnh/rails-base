@@ -66,6 +66,8 @@ namespace :deploy do
   after  :finishing,    :cleanup
 end
 
+after :deploy, "puma:start"
+
 namespace :db do
   desc "Resets DB without create/drop"
   task :reset do
